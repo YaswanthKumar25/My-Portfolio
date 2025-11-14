@@ -1,0 +1,50 @@
+/* Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 28px;
+  background-color: #0d1117; /* dark background */
+  border-bottom: 1px solid #15181d;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.tag {
+  color: #97a0ad;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 22px;
+}
+
+.nav-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.15s ease;
+}
+
+.nav-links a:hover {
+  color: #58a6ff;
+}
+
+/* Responsive: stack links on small screens */
+@media (max-width: 640px) {
+  .nav-links { display: none; } /* we'll add a mobile menu later */
+}

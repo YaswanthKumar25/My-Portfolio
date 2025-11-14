@@ -1,0 +1,120 @@
+/* Hero.css */
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 48px 28px;
+  background: linear-gradient(180deg, #0b1220 0%, #0d1117 100%);
+  color: #e6eef8;
+}
+
+.hero-left {
+  max-width: 720px;
+}
+
+.hero-title {
+  font-size: 40px;
+  line-height: 1.05;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.hero-title span {
+  color: #58a6ff; /* accent color */
+}
+
+.hero-sub {
+  color: #b8c2cf;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.hero-cta {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #58a6ff;
+  color: #071022;
+}
+
+.btn:hover {
+  opacity: 0.95;
+}
+
+/* Resume button style */
+.resume-btn {
+  background: transparent;
+  color: #cbd5e1;
+  border: 1px solid #374151;
+}
+.resume-btn:hover {
+  background: #1f2937;
+  color: #fff;
+}
+
+/* Hero meta (small tags) */
+.hero-meta {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: #9aa8b8;
+  font-size: 14px;
+}
+
+/* Photo */
+.hero-right {
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid #1f2937;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Placeholder if photo missing */
+.photo-placeholder {
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(135deg,#111827,#0b1220);
+  border-radius: 12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#8b99a9;
+  font-weight:700;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 800px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-right {
+    margin-top: 16px;
+  }
+}
