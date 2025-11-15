@@ -110,8 +110,6 @@ function Contact() {
               </a>
             </p>
           </div>
-
-          <p className="note">Tip: To receive messages directly in your inbox without a mail client, connect this form to Formspree or Netlify Forms. I can show that next if you want.</p>
         </aside>
       </div>
     </section>
