@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-export function Github({ className = 'w-4 h-4', ...props }) {
+export function Github({ className = "w-4 h-4", ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ export function Github({ className = 'w-4 h-4', ...props }) {
   );
 }
 
-export function Linkedin({ className = 'w-4 h-4', ...props }) {
+export function Linkedin({ className = "w-4 h-4", ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
