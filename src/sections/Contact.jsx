@@ -57,6 +57,15 @@ export default function Contact() {
     }
   };
 
+  const subjectEncoded = encodeURIComponent(`[Portfolio Inquiry] ${formData.subject}`);
+  const bodyEncoded = encodeURIComponent(
+    `Hello Yaswanth,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\n---\nSent via portfolio contact form`
+  );
+  const mailtoUrl = `mailto:${personalInfo.email}?subject=${subjectEncoded}&body=${bodyEncoded}`;
+  const webGmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    personalInfo.email
+  )}&su=${subjectEncoded}&body=${bodyEncoded}`;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -67,19 +76,12 @@ export default function Contact() {
 
     setIsSubmitting(true);
 
-    // Prepare mailto link with encoded content
-    const subjectEncoded = encodeURIComponent(`[Portfolio Inquiry] ${formData.subject}`);
-    const bodyEncoded = encodeURIComponent(
-      `Hello Yaswanth,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\n---\nSent via portfolio contact interface`
-    );
-    const mailtoUrl = `mailto:${personalInfo.email}?subject=${subjectEncoded}&body=${bodyEncoded}`;
-
-    // Open mail client
+    // Open user's default email client
     setTimeout(() => {
       window.location.href = mailtoUrl;
       setIsSubmitting(false);
       setSubmitted(true);
-    }, 400);
+    }, 300);
   };
 
   const handleCopyEmail = () => {
@@ -225,27 +227,40 @@ export default function Contact() {
                 Send a Message
               </h3>
               <p className="text-xs sm:text-sm text-[#A1A1AA] mt-1">
-                Fill out the form below. Your message will be formatted and directly opened in your email client for sending.
+                Fill out the form below. Your message will be formatted and opened directly in your email app.
               </p>
             </div>
 
             {submitted && (
-              <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs sm:text-sm text-emerald-300 space-y-2">
-                <div className="flex items-center gap-2 font-semibold">
-                  <Check className="w-4 h-4 text-[#4ADE80]" />
-                  <span>Mail client dispatched!</span>
+              <div className="mb-6 p-5 rounded-xl bg-[#18181B] border border-[#22D3EE]/30 space-y-3">
+                <div className="flex items-center gap-2 font-semibold text-[#22D3EE]">
+                  <Check className="w-5 h-5 text-[#22D3EE]" />
+                  <span>Draft Opened in Your Email App!</span>
                 </div>
-                <p className="text-emerald-400/90 text-xs leading-relaxed">
-                  Your mail client has been opened with your inquiry prepared for <code className="text-white bg-black/30 px-1 py-0.5 rounded">{personalInfo.email}</code>.
+                <p className="text-xs sm:text-sm text-[#E4E4E7] leading-relaxed">
+                  Your mail app has opened with your inquiry prepared for <code className="text-[#22D3EE] bg-black/40 px-1.5 py-0.5 rounded font-mono">{personalInfo.email}</code>.
+                  <br />
+                  <span className="text-[#FAFAFA] font-medium">Important:</span> Please click <span className="text-[#22D3EE] font-semibold">"Send"</span> inside your mail app to finish sending.
                 </p>
-                <button
-                  type="button"
-                  onClick={handleCopyFormattedMessage}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-200 text-xs font-medium transition-colors cursor-pointer"
-                >
-                  {copiedMessage ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                  <span>{copiedMessage ? 'Copied Message Text!' : 'Copy Formatted Text as Backup'}</span>
-                </button>
+                <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                  <a
+                    href={webGmailUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#22D3EE]/10 hover:bg-[#22D3EE]/20 border border-[#22D3EE]/30 text-[#22D3EE] text-xs font-medium transition-colors"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    <span>Send via Web Gmail instead</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={handleCopyFormattedMessage}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#27272A] hover:bg-[#3F3F46] text-[#FAFAFA] text-xs font-medium transition-colors cursor-pointer"
+                  >
+                    {copiedMessage ? <Check className="w-3.5 h-3.5 text-[#4ADE80]" /> : <Copy className="w-3.5 h-3.5" />}
+                    <span>{copiedMessage ? 'Copied Message!' : 'Copy Formatted Text'}</span>
+                  </button>
+                </div>
               </div>
             )}
 
@@ -367,11 +382,11 @@ export default function Contact() {
                   disabled={isSubmitting}
                   className="w-full sm:w-auto"
                 >
-                  {isSubmitting ? 'Opening Mail Client...' : 'Dispatch Message'}
+                  {isSubmitting ? 'Opening Mail App...' : 'Send via Mail App'}
                 </Button>
 
                 <span className="text-xs font-mono text-[#71717A] text-center sm:text-right">
-                  No tracking scripts • Direct communication
+                  Opens your default email client
                 </span>
               </div>
 
